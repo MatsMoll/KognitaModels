@@ -51,7 +51,6 @@ public struct MultipleChoiceTask: Task, Codable {
     public let choises: [MultipleChoiceTaskChoice]
 }
 
-
 extension MultipleChoiceTask {
 
     public struct ModifyContent {

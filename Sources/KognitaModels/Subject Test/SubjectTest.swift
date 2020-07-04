@@ -70,7 +70,6 @@ public struct SubjectTest: Codable, Identifiable {
     }
 }
 
-
 extension SubjectTest {
 
     public struct ModifyResponse: Codable {
@@ -108,7 +107,6 @@ extension SubjectTest {
             self.isTeamBasedLearning = test.isTeamBasedLearning
         }
     }
-
 
     public struct ListReponse: Codable {
         public let subject: Subject

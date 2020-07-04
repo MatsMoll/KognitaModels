@@ -3,7 +3,7 @@ extension MultipleChoiceTask {
     public struct Create {
 
         public struct Data: Codable {
-            
+
             public init(subtopicId: Topic.ID, description: String?, question: String, solution: String, isMultipleSelect: Bool, examPaperSemester: ExamTaskType?, examPaperYear: Int?, isTestable: Bool, choises: [MultipleChoiceTaskChoice.Create.Data]) {
                 self.subtopicId = subtopicId
                 self.description = description
@@ -15,7 +15,6 @@ extension MultipleChoiceTask {
                 self.isTestable = isTestable
                 self.choises = choises
             }
-
 
             public let subtopicId: Topic.ID
             public let description: String?

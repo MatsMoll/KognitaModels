@@ -1,6 +1,5 @@
-
 extension Topic {
-    
+
     public enum Create {
 
         public struct Data: Codable {

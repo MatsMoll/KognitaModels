@@ -1,4 +1,3 @@
-
 public struct Topic: Codable, Identifiable {
 
     public let id: Int
@@ -13,7 +12,6 @@ public struct Topic: Codable, Identifiable {
         self.chapter = chapter
     }
 }
-
 
 extension Topic {
     public struct WithSubtopics: Codable {

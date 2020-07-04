@@ -1,11 +1,10 @@
 public struct MultipleChoiceTaskChoice: Codable {
-    
+
     public init(id: MultipleChoiceTaskChoice.ID, choice: String, isCorrect: Bool) {
         self.id = id
         self.choice = choice
         self.isCorrect = isCorrect
     }
-
 
     public typealias ID = Int
 
@@ -15,7 +14,6 @@ public struct MultipleChoiceTaskChoice: Codable {
 
     public let isCorrect: Bool
 }
-
 
 extension MultipleChoiceTaskChoice {
 

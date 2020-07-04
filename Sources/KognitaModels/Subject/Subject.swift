@@ -1,5 +1,5 @@
 public struct Subject: Codable, Identifiable {
-    
+
     public let id: Int
     public let name: String
     public let description: String
@@ -13,7 +13,6 @@ public struct Subject: Codable, Identifiable {
     }
 }
 
-
 extension Subject {
     public struct Compendium: Codable {
 
@@ -22,7 +21,6 @@ extension Subject {
             self.subjectName = subjectName
             self.topics = topics
         }
-
 
         public struct QuestionData: Codable {
 

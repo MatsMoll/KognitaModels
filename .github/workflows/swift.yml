@@ -28,4 +28,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
         GITHUB_SHA: ${{ secrets.GITHUB_SHA }}
-#        FINCH_CONFIG: CI/finch-config.yml
+        FINCH_CONFIG: CI/finch-config.yml

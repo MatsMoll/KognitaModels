@@ -1,5 +1,3 @@
-
-
 extension TestSession {
     public struct PreSubmitOverview: Codable {
 
@@ -9,13 +7,12 @@ extension TestSession {
             self.tasks = tasks
         }
 
-
         public let sessionID: TestSession.ID
         public let test: SubjectTest
         public let tasks: [TaskStatus]
 
         public struct TaskStatus: Codable {
-            
+
             public init(testTaskID: Int, question: String, isAnswered: Bool) {
                 self.testTaskID = testTaskID
                 self.question = question

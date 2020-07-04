@@ -1,6 +1,5 @@
 import Foundation
 
-
 extension SubjectTest {
 
     public struct Results: Codable {
@@ -23,7 +22,6 @@ extension SubjectTest {
             self.userResults = userResults
         }
     }
-
 
     public struct CompletionStatus: Codable {
         public init(amountOfCompletedUsers: Int, amountOfEnteredUsers: Int) {

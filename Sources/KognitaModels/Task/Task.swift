@@ -90,9 +90,8 @@ public struct GenericTask: Codable, Task, Identifiable {
     }
 }
 
-
 public struct CreatorTaskContent {
-    
+
     public init(task: Task, topic: Topic, creator: User, isMultipleChoise: Bool) {
         self.task = task
         self.topic = topic
@@ -114,9 +113,8 @@ public struct CreatorTaskContent {
     }
 }
 
-
 public struct TaskPreviewContent {
-    
+
     public init(subject: Subject, topic: Topic, task: Task, actionDescription: String) {
         self.subject = subject
         self.topic = topic
@@ -139,7 +137,6 @@ public struct TaskModifyContent: Codable, Task, Identifiable {
     public var createdAt: Date? { nil }
 
     public var updatedAt: Date? { nil }
-
 
     public let id: Int
 

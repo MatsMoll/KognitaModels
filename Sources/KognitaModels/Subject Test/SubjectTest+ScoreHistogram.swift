@@ -42,12 +42,12 @@ extension SubjectTest {
         }
 
         public let test: SubjectTest
-        public let task: KognitaContent.MultipleChoiceTask
+        public let task: KognitaModels.MultipleChoiceTask
         public let choises: [Choise]
 
         public let testTasks: [AssignedTask]
 
-        public init(test: SubjectTest, task: KognitaContent.MultipleChoiceTask, choises: [SubjectTest.MultipleChoiseTaskContent.Choise], testTasks: [SubjectTest.AssignedTask]) {
+        public init(test: SubjectTest, task: KognitaModels.MultipleChoiceTask, choises: [SubjectTest.MultipleChoiseTaskContent.Choise], testTasks: [SubjectTest.AssignedTask]) {
             self.test = test
             self.task = task
             self.choises = choises

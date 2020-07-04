@@ -19,7 +19,6 @@ extension Subject {
     }
 }
 
-
 extension Subject {
     public struct Overview: Codable {
 
@@ -30,7 +29,6 @@ extension Subject {
             self.category = category
             self.topics = topics
         }
-
 
         public let id: Int
         public let name: String

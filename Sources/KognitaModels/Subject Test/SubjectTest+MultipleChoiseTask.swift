@@ -3,7 +3,7 @@ import Foundation
 extension SubjectTest {
 
     public struct MultipleChoiceTask: Task, Codable {
-        
+
         public init(test: SubjectTest, id: Int, subtopicID: Subtopic.ID, description: String? = nil, question: String, creatorID: User.ID? = nil, examType: ExamTaskType? = nil, examYear: Int? = nil, isTestable: Bool, createdAt: Date? = nil, updatedAt: Date? = nil, editedTaskID: Int? = nil, isMultipleSelect: Bool, choises: [SubjectTest.MultipleChoiceTask.Choise], tasks: [SubjectTest.AssignedTask]) {
             self.test = test
             self.id = id
@@ -21,7 +21,6 @@ extension SubjectTest {
             self.choises = choises
             self.tasks = tasks
         }
-
 
         public struct Choise: Codable {
             public init(id: Int, choise: String, isCorrect: Bool, isSelected: Bool) {

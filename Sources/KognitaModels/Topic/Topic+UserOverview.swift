@@ -1,4 +1,3 @@
-
 extension Topic {
     public struct UserOverview: Codable {
         public init(id: Topic.ID, name: String, numberOfTasks: Int, userLevel: Topic.UserLevel) {

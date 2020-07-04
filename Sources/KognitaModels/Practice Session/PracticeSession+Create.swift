@@ -1,4 +1,3 @@
-
 extension PracticeSession {
 
     public enum Create {
@@ -12,7 +11,6 @@ extension PracticeSession {
             public let subtopicsIDs: Set<Subtopic.ID>?
 
             public let topicIDs: Set<Topic.ID>?
-
 
             public init(numberOfTaskGoal: Int, subtopicsIDs: Set<Subtopic.ID>?, topicIDs: Set<Topic.ID>?) {
                 self.numberOfTaskGoal = numberOfTaskGoal

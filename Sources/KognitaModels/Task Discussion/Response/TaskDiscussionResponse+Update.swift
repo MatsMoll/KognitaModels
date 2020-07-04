@@ -7,7 +7,7 @@ extension TaskDiscussionResponse {
         public struct Data: Codable {
             public let response: String
         }
-        
+
         public struct Response: Codable {}
     }
 }

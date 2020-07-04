@@ -50,7 +50,7 @@ extension TaskSolution {
 extension TaskSolution {
 
     public struct Unverified: Codable {
-        
+
         public init(taskID: Int, solutionID: TaskSolution.ID, description: String?, question: String, solution: String, choises: [MultipleChoiceTaskChoice]) {
             self.taskID = taskID
             self.solutionID = solutionID
@@ -59,7 +59,6 @@ extension TaskSolution {
             self.solution = solution
             self.choises = choises
         }
-
 
         public let taskID: Task.ID
         public let solutionID: TaskSolution.ID

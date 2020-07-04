@@ -21,7 +21,6 @@ extension MultipleChoiceTask {
             self.solutions = solutions
         }
 
-
         public var id: Int
         public var subtopicID: Subtopic.ID
         public var description: String?

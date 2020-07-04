@@ -15,7 +15,6 @@ public struct TypingTask: Task, Identifiable, Codable {
         self.editedTaskID = editedTaskID
     }
 
-
     public var id: Int
     public var subtopicID: Subtopic.ID
     public var description: String?
@@ -28,7 +27,6 @@ public struct TypingTask: Task, Identifiable, Codable {
     public var updatedAt: Date?
     public var editedTaskID: Int?
 }
-
 
 extension TypingTask {
     public struct Answer: Codable {

@@ -8,7 +8,6 @@ public struct TestSession: Codable, Identifiable {
         self.testID = testID
     }
 
-
     public var id: Int
     public var createdAt: Date
     public var submittedAt: Date?

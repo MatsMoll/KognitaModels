@@ -17,7 +17,6 @@ public struct PracticeSession: Codable {
     }
 }
 
-
 public enum Sessions {
 
     public typealias ID = Int

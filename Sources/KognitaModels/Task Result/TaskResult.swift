@@ -41,7 +41,6 @@ public struct TaskResult: Codable, Identifiable {
     }
 }
 
-
 public protocol TaskResultable {
     var topicID: Topic.ID { get }
     var topicName: String { get }
@@ -55,7 +54,6 @@ public protocol TaskResultable {
     var revisitDate: Date? { get }
     var isSetManually: Bool { get }
 }
-
 
 extension PracticeSession.TaskResult: TaskResultable {
     public var revisitTime: Int { 0 }

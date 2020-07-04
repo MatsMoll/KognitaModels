@@ -14,7 +14,6 @@ extension User {
                 self.acceptedTerms = acceptedTerms
             }
 
-
             public enum TermsOfConditionState: String, Codable {
                 case accepted
                 case notAccepted

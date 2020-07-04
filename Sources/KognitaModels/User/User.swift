@@ -12,7 +12,6 @@ public struct User: Codable, Identifiable {
         self.isEmailVerified = isEmailVerified
     }
 
-
     /// User's unique identifier.
     /// Not optional since we only return users that exist in the DB.
     public let id: Int
@@ -32,7 +31,6 @@ public struct User: Codable, Identifiable {
     /// If the users email has been verified
     public let isEmailVerified: Bool
 }
-
 
 extension User {
     public enum Login {

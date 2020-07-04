@@ -18,7 +18,7 @@ extension TestSession {
         }
 
         public struct Topic: Codable {
-            public let id: KognitaContent.Topic.ID
+            public let id: KognitaModels.Topic.ID
             public let name: String
             public let taskResults: [Task]
 
@@ -34,7 +34,7 @@ extension TestSession {
                 scoreProsentage * 100
             }
 
-            public init(id: KognitaContent.Topic.ID, name: String, taskResults: [Task]) {
+            public init(id: KognitaModels.Topic.ID, name: String, taskResults: [Task]) {
                 self.id = id
                 self.name = name
                 self.taskResults = taskResults
@@ -76,10 +76,9 @@ extension TestSession {
     }
 }
 
-
 extension TestSession {
     public struct DetailedTaskResult: Codable {
-        
+
         public init(taskID: Int, description: String?, question: String, isMultipleSelect: Bool, testSessionID: TestSession.ID, choises: [MultipleChoiceTaskChoice], selectedChoises: [MultipleChoiceTaskChoice.ID]) {
             self.taskID = taskID
             self.description = description
@@ -89,7 +88,6 @@ extension TestSession {
             self.choises = choises
             self.selectedChoises = selectedChoises
         }
-
 
         public let taskID: Task.ID
         public let description: String?

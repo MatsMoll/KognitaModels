@@ -1,4 +1,3 @@
-
 public struct Dashboard: Codable {
 
     public init(subjects: [Subject.ListOverview], ongoingPracticeSession: PracticeSession.ID?, ongoingTestSession: TestSession.ID?, openedTest: SubjectTest.UserOverview?) {
