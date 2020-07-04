@@ -14,6 +14,9 @@ let package = Package(
     targets: [
         .target(
             name: "KognitaModels",
-            dependencies: [])
+            dependencies: []),
+        .testTarget(
+            name: "KognitaModelsTests",
+            dependencies: [.target(name: "KognitaModels")])
     ]
 )
