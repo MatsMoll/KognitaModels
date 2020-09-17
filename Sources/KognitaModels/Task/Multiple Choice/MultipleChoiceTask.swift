@@ -44,6 +44,7 @@ public struct MultipleChoiceTask: Task, Codable {
     public var examType: ExamTaskType?
     public var examYear: Int?
     public var isTestable: Bool
+    public let isDraft: Bool = false
     public var createdAt: Date?
     public var updatedAt: Date?
     public var editedTaskID: Int?
@@ -56,25 +57,25 @@ extension MultipleChoiceTask {
     public struct ModifyContent {
         public let task: TaskModifyContent?
         public let subject: Subject
-        public var topics: [Topic.WithSubtopics] { [] }
+        public var topics: [Topic.WithSubtopics]
 
         public let isMultipleSelect: Bool
         public let choises: [MultipleChoiceTaskChoice]
 
-        public init(task: TaskModifyContent?, subject: Subject, multiple: MultipleChoiceTask?, choises: [MultipleChoiceTaskChoice]) {
+        public init(task: TaskModifyContent?, subject: Subject, isMultipleSelect: Bool, choises: [MultipleChoiceTaskChoice], topics: [Topic.WithSubtopics]) {
             self.task = task
             self.subject = subject
-//            self.topics = topics
-            self.isMultipleSelect = multiple?.isMultipleSelect ?? false
+            self.isMultipleSelect = isMultipleSelect
             self.choises = choises
+            self.topics = topics
         }
 
-        public init(subject: Subject, topics: [Topic]) {
+        public init(subject: Subject, topics: [Topic.WithSubtopics]) {
             self.task = nil
             self.isMultipleSelect = false
             self.choises = []
             self.subject = subject
-//            self.topics = topics
+            self.topics = topics
         }
     }
 }

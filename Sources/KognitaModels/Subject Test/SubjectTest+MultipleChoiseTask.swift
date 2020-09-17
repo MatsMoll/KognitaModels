@@ -46,6 +46,7 @@ extension SubjectTest {
         public var examType: ExamTaskType?
         public var examYear: Int?
         public var isTestable: Bool
+        public let isDraft: Bool = false
         public var createdAt: Date?
         public var updatedAt: Date?
         public var editedTaskID: Int?

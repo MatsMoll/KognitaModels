@@ -15,6 +15,12 @@ public struct Topic: Codable, Identifiable {
 
 extension Topic {
     public struct WithSubtopics: Codable {
+        
+        public init(name: String, subtopics: [Subtopic]) {
+            self.name = name
+            self.subtopics = subtopics
+        }
+
         public let name: String
         public let subtopics: [Subtopic]
     }

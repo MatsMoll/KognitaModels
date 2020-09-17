@@ -1,7 +1,7 @@
 import Foundation
 
 public struct TypingTask: Task, Identifiable, Codable {
-    public init(id: Int, subtopicID: Subtopic.ID, description: String? = nil, question: String, creatorID: User.ID? = nil, examType: ExamTaskType? = nil, examYear: Int? = nil, isTestable: Bool, createdAt: Date? = nil, updatedAt: Date? = nil, editedTaskID: Int? = nil) {
+    public init(id: Int, subtopicID: Subtopic.ID, description: String? = nil, question: String, creatorID: User.ID? = nil, examType: ExamTaskType? = nil, examYear: Int? = nil, isTestable: Bool, isDraft: Bool, createdAt: Date? = nil, updatedAt: Date? = nil, editedTaskID: Int? = nil) {
         self.id = id
         self.subtopicID = subtopicID
         self.description = description
@@ -10,6 +10,7 @@ public struct TypingTask: Task, Identifiable, Codable {
         self.examType = examType
         self.examYear = examYear
         self.isTestable = isTestable
+        self.isDraft = isDraft
         self.createdAt = createdAt
         self.updatedAt = updatedAt
         self.editedTaskID = editedTaskID
@@ -23,6 +24,7 @@ public struct TypingTask: Task, Identifiable, Codable {
     public var examType: ExamTaskType?
     public var examYear: Int?
     public var isTestable: Bool
+    public var isDraft: Bool
     public var createdAt: Date?
     public var updatedAt: Date?
     public var editedTaskID: Int?
@@ -41,11 +43,13 @@ extension TypingTask {
 extension TypingTask {
     public struct ModifyContent {
         public let task: TaskModifyContent?
-        public let subject: Subject.Overview
+        public let subject: Subject
+        public var topics: [Topic.WithSubtopics]
 
-        public init(subject: Subject.Overview) {
-            self.task = nil
+        public init(subject: Subject, topics: [Topic.WithSubtopics], task: TaskModifyContent? = nil) {
+            self.task = task
             self.subject = subject
+            self.topics = topics
         }
 
 //        public init(subject: Subject.Overview) {
