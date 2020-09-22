@@ -4,7 +4,7 @@ extension SubjectTest {
 
     public struct MultipleChoiceTask: Task, Codable {
 
-        public init(test: SubjectTest, id: Int, subtopicID: Subtopic.ID, description: String? = nil, question: String, creatorID: User.ID? = nil, examType: ExamTaskType? = nil, examYear: Int? = nil, isTestable: Bool, createdAt: Date? = nil, updatedAt: Date? = nil, editedTaskID: Int? = nil, isMultipleSelect: Bool, choises: [SubjectTest.MultipleChoiceTask.Choise], tasks: [SubjectTest.AssignedTask]) {
+        public init(test: SubjectTest, id: Int, subtopicID: Subtopic.ID, description: String? = nil, question: String, creatorID: User.ID? = nil, examType: ExamTaskType? = nil, examYear: Int? = nil, isTestable: Bool, createdAt: Date? = nil, updatedAt: Date? = nil, deletedAt: Date?, editedTaskID: Int? = nil, isMultipleSelect: Bool, choises: [SubjectTest.MultipleChoiceTask.Choise], tasks: [SubjectTest.AssignedTask]) {
             self.test = test
             self.id = id
             self.subtopicID = subtopicID
@@ -49,6 +49,7 @@ extension SubjectTest {
         public let isDraft: Bool = false
         public var createdAt: Date?
         public var updatedAt: Date?
+        public var deletedAt: Date?
         public var editedTaskID: Int?
         public let isMultipleSelect: Bool
         public let choises: [Choise]

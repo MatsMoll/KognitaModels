@@ -4,7 +4,7 @@ extension MultipleChoiceTask {
 
     public struct Details: Task {
 
-        public init(id: Int, subtopicID: Subtopic.ID, description: String? = nil, question: String, creatorID: User.ID? = nil, examType: ExamTaskType? = nil, examYear: Int? = nil, isTestable: Bool, isDraft: Bool, createdAt: Date? = nil, updatedAt: Date? = nil, editedTaskID: Int? = nil, isMultipleSelect: Bool, choises: [MultipleChoiceTaskChoice], solutions: [TaskSolution]) {
+        public init(id: Int, subtopicID: Subtopic.ID, description: String? = nil, question: String, creatorID: User.ID? = nil, examType: ExamTaskType? = nil, examYear: Int? = nil, isTestable: Bool, isDraft: Bool, createdAt: Date? = nil, updatedAt: Date? = nil, deletedAt: Date?, editedTaskID: Int? = nil, isMultipleSelect: Bool, choises: [MultipleChoiceTaskChoice], solutions: [TaskSolution]) {
             self.id = id
             self.subtopicID = subtopicID
             self.description = description
@@ -16,6 +16,7 @@ extension MultipleChoiceTask {
             self.isDraft = isDraft
             self.createdAt = createdAt
             self.updatedAt = updatedAt
+            self.deletedAt = deletedAt
             self.editedTaskID = editedTaskID
             self.isMultipleSelect = isMultipleSelect
             self.choises = choises
@@ -33,6 +34,7 @@ extension MultipleChoiceTask {
         public var isDraft: Bool
         public var createdAt: Date?
         public var updatedAt: Date?
+        public var deletedAt: Date?
         public var editedTaskID: Int?
         public let isMultipleSelect: Bool
         public let choises: [MultipleChoiceTaskChoice]

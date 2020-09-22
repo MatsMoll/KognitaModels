@@ -2,7 +2,7 @@ import Foundation
 
 public struct MultipleChoiceTask: Task, Codable {
 
-    public init(id: Int, subtopicID: Subtopic.ID, description: String? = nil, question: String, creatorID: User.ID? = nil, examType: ExamTaskType? = nil, examYear: Int? = nil, isTestable: Bool, createdAt: Date? = nil, updatedAt: Date? = nil, editedTaskID: Int? = nil, isMultipleSelect: Bool, choises: [MultipleChoiceTaskChoice]) {
+    public init(id: Int, subtopicID: Subtopic.ID, description: String? = nil, question: String, creatorID: User.ID? = nil, examType: ExamTaskType? = nil, examYear: Int? = nil, isTestable: Bool, createdAt: Date? = nil, updatedAt: Date? = nil, deletedAt: Date?, editedTaskID: Int? = nil, isMultipleSelect: Bool, choises: [MultipleChoiceTaskChoice]) {
         self.id = id
         self.subtopicID = subtopicID
         self.description = description
@@ -13,6 +13,7 @@ public struct MultipleChoiceTask: Task, Codable {
         self.isTestable = isTestable
         self.createdAt = createdAt
         self.updatedAt = updatedAt
+        self.deletedAt = deletedAt
         self.editedTaskID = editedTaskID
         self.isMultipleSelect = isMultipleSelect
         self.choises = choises
@@ -30,6 +31,7 @@ public struct MultipleChoiceTask: Task, Codable {
             isTestable: task.isTestable,
             createdAt: task.createdAt,
             updatedAt: task.updatedAt,
+            deletedAt: task.deletedAt,
             editedTaskID: task.editedTaskID,
             isMultipleSelect: isMultipleSelect,
             choises: choices
@@ -47,6 +49,7 @@ public struct MultipleChoiceTask: Task, Codable {
     public let isDraft: Bool = false
     public var createdAt: Date?
     public var updatedAt: Date?
+    public var deletedAt: Date?
     public var editedTaskID: Int?
     public let isMultipleSelect: Bool
     public let choises: [MultipleChoiceTaskChoice]

@@ -40,15 +40,15 @@ public protocol Task {
     /// If the task can be used for testing
     var isTestable: Bool { get }
 
-    /// If the task is a draft or a finished task
-    var isDraft: Bool { get }
-
     /// The date the task was created at
     var createdAt: Date? { get }
 
     /// The date the task was updated at
     /// - Note: Usually a task will be marked as isOutdated and create a new `Task` when updated
     var updatedAt: Date? { get }
+
+    /// The date the task was deleted
+    var deletedAt: Date? { get }
 
     /// The id of the new edited task if there exists one
     var editedTaskID: Task.ID? { get }
@@ -72,8 +72,6 @@ public struct GenericTask: Codable, Task, Identifiable {
 
     public var isTestable: Bool
 
-    public var isDraft: Bool
-
     public var createdAt: Date?
 
     public var updatedAt: Date?
@@ -82,7 +80,7 @@ public struct GenericTask: Codable, Task, Identifiable {
 
     public var editedTaskID: Int?
 
-    public init(id: Int, subtopicID: Subtopic.ID, description: String? = nil, question: String, creatorID: User.ID? = nil, examType: ExamTaskType? = nil, examYear: Int? = nil, isTestable: Bool, isDraft: Bool, createdAt: Date? = nil, updatedAt: Date? = nil, editedTaskID: Int? = nil, deletedAt: Date? = nil) {
+    public init(id: Int, subtopicID: Subtopic.ID, description: String? = nil, question: String, creatorID: User.ID? = nil, examType: ExamTaskType? = nil, examYear: Int? = nil, isTestable: Bool, createdAt: Date? = nil, updatedAt: Date? = nil, editedTaskID: Int? = nil, deletedAt: Date?) {
         self.id = id
         self.subtopicID = subtopicID
         self.description = description
@@ -91,7 +89,6 @@ public struct GenericTask: Codable, Task, Identifiable {
         self.examType = examType
         self.examYear = examYear
         self.isTestable = isTestable
-        self.isDraft = isDraft
         self.createdAt = createdAt
         self.updatedAt = updatedAt
         self.editedTaskID = editedTaskID
@@ -112,6 +109,7 @@ public struct CreatorTaskContent: Codable {
     public let topic: Topic
     public let creator: User
     public let isMultipleChoise: Bool
+    public let isNote: Bool = false
 
     public var taskTypePath: String {
         if isMultipleChoise {
@@ -163,8 +161,6 @@ public struct TaskModifyContent: Codable, Task, Identifiable {
     /// If the task can be used for testing
     public let isTestable: Bool
 
-    public let isDraft: Bool
-
     /// The id of the new edited task if there exists one
     public let editedTaskID: Task.ID?
 
@@ -180,15 +176,19 @@ public struct TaskModifyContent: Codable, Task, Identifiable {
         self.description = task.description
         self.question = task.question
         self.isTestable = task.isTestable
-        self.isDraft = task.isDraft
         self.editedTaskID = task.editedTaskID
         self.solutions = solutions
         self.creatorID = task.creatorID
-        self.deletedAt = nil
+        self.deletedAt = task.deletedAt
     }
 }
 
 public struct TaskOverviewQuery: Codable {
     public let taskQuestion: String?
     public let topics: [Topic.ID]
+
+    public init(taskQuestion: String?, topics: [Topic.ID]) {
+        self.taskQuestion = taskQuestion
+        self.topics = topics
+    }
 }

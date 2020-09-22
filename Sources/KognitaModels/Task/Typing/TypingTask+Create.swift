@@ -30,23 +30,5 @@ extension TypingTask {
         }
 
         public typealias Response = TypingTask
-
-        public struct Draft: Codable {
-
-            public let subtopicID: Subtopic.ID
-
-            public let description: String?
-
-            public let question: String
-
-            public let solution: String?
-
-            public init(subtopicID: Subtopic.ID, description: String?, question: String, solution: String?) {
-                self.subtopicID = subtopicID
-                self.description = description
-                self.question = question
-                self.solution = solution
-            }
-        }
     }
 }
