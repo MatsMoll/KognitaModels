@@ -18,13 +18,8 @@ extension User {
                 case accepted
                 case notAccepted
 
-                enum Key: CodingKey {
-                    case rawValue
-                }
-
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: Key.self)
-                    let rawValue = try container.decode(String.self, forKey: .rawValue)
+                    let rawValue = try decoder.singleValueContainer().decode(String.self)
                     switch rawValue {
                     case "on", "true", "yes", "accepted", "accept": self = .accepted
                     default: self = .notAccepted
@@ -32,10 +27,10 @@ extension User {
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: Key.self)
+                    var container = encoder.singleValueContainer()
                     switch self {
-                    case .accepted: try container.encode("accepted", forKey: .rawValue)
-                    case .notAccepted: try container.encode("notAccepted", forKey: .rawValue)
+                    case .accepted: try container.encode("accepted")
+                    case .notAccepted: try container.encode("notAccepted")
                     }
                 }
             }
