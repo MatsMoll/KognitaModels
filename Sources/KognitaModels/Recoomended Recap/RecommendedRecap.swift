@@ -8,15 +8,17 @@
 import Foundation
 
 public struct RecommendedRecap: Codable {
-    public init(subjectName: String, topicName: String, topicID: Int, resultScore: Double) {
+    public init(subjectName: String, topicName: String, topicID: Int, resultScore: Double, revisitAt: Date) {
         self.subjectName = subjectName
         self.topicName = topicName
         self.topicID = topicID
         self.resultScore = resultScore
+        self.revisitAt = revisitAt
     }
 
     public let subjectName: String
     public let topicName: String
     public let topicID: Int
     public let resultScore: Double
+    public let revisitAt: Date
 }
