@@ -16,7 +16,7 @@ extension PracticeSession {
             
             public let useMultipleChoiceTasks: Bool
 
-            public init(numberOfTaskGoal: Int, subtopicsIDs: Set<Subtopic.ID>?, topicIDs: Set<Topic.ID>?, useTypingTasks: Bool, useMultipleChoiceTasks: Bool) {
+            public init(numberOfTaskGoal: Int, subtopicsIDs: Set<Subtopic.ID>?, topicIDs: Set<Topic.ID>?, useTypingTasks: Bool = true, useMultipleChoiceTasks: Bool = true) {
                 self.numberOfTaskGoal = numberOfTaskGoal
                 self.subtopicsIDs = subtopicsIDs
                 self.topicIDs = topicIDs
