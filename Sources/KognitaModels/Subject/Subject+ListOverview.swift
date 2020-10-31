@@ -2,6 +2,14 @@ extension Subject {
 
     /// The `Subject` info presented when listing subjects to a user
     public struct ListOverview: Codable {
+        
+        public struct SearchQuery: Codable {
+            public let name: String?
+            
+            public init(name: String? = nil) {
+                self.name = name
+            }
+        }
 
         public let id: Subject.ID
         public let name: String
