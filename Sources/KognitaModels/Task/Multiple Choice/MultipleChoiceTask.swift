@@ -2,14 +2,13 @@ import Foundation
 
 public struct MultipleChoiceTask: Task, Codable {
 
-    public init(id: Int, subtopicID: Subtopic.ID, description: String? = nil, question: String, creatorID: User.ID? = nil, examType: ExamTaskType? = nil, examYear: Int? = nil, isTestable: Bool, createdAt: Date? = nil, updatedAt: Date? = nil, deletedAt: Date?, editedTaskID: Int? = nil, isMultipleSelect: Bool, choises: [MultipleChoiceTaskChoice]) {
+    public init(id: Int, subtopicID: Subtopic.ID, description: String? = nil, question: String, creatorID: User.ID? = nil, exam: Exam.Compact? = nil, isTestable: Bool, createdAt: Date? = nil, updatedAt: Date? = nil, deletedAt: Date?, editedTaskID: Int? = nil, isMultipleSelect: Bool, choises: [MultipleChoiceTaskChoice]) {
         self.id = id
         self.subtopicID = subtopicID
         self.description = description
         self.question = question
         self.creatorID = creatorID
-        self.examType = examType
-        self.examYear = examYear
+        self.exam = exam
         self.isTestable = isTestable
         self.createdAt = createdAt
         self.updatedAt = updatedAt
@@ -26,8 +25,7 @@ public struct MultipleChoiceTask: Task, Codable {
             description: task.description,
             question: task.question,
             creatorID: task.creatorID,
-            examType: task.examType,
-            examYear: task.examYear,
+            exam: task.exam,
             isTestable: task.isTestable,
             createdAt: task.createdAt,
             updatedAt: task.updatedAt,
@@ -43,10 +41,9 @@ public struct MultipleChoiceTask: Task, Codable {
     public var description: String?
     public var question: String
     public var creatorID: User.ID?
-    public var examType: ExamTaskType?
-    public var examYear: Int?
+    public var exam: Exam.Compact?
     public var isTestable: Bool
-    public let isDraft: Bool = false
+    public var isDraft: Bool = false
     public var createdAt: Date?
     public var updatedAt: Date?
     public var deletedAt: Date?
@@ -61,24 +58,27 @@ extension MultipleChoiceTask {
         public let task: TaskModifyContent?
         public let subject: Subject
         public var topics: [Topic.WithSubtopics]
+        public let exams: [Exam]
 
         public let isMultipleSelect: Bool
         public let choises: [MultipleChoiceTaskChoice]
 
-        public init(task: TaskModifyContent?, subject: Subject, isMultipleSelect: Bool, choises: [MultipleChoiceTaskChoice], topics: [Topic.WithSubtopics]) {
+        public init(task: TaskModifyContent?, subject: Subject, isMultipleSelect: Bool, choises: [MultipleChoiceTaskChoice], topics: [Topic.WithSubtopics], exams: [Exam]) {
             self.task = task
             self.subject = subject
             self.isMultipleSelect = isMultipleSelect
             self.choises = choises
             self.topics = topics
+            self.exams = exams
         }
 
-        public init(subject: Subject, topics: [Topic.WithSubtopics]) {
+        public init(subject: Subject, topics: [Topic.WithSubtopics], exams: [Exam]) {
             self.task = nil
             self.isMultipleSelect = false
             self.choises = []
             self.subject = subject
             self.topics = topics
+            self.exams = exams
         }
     }
 }

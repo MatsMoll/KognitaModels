@@ -17,7 +17,7 @@ public protocol Task {
 
     typealias ID = Int
 
-    var id: Int { get }
+    var id: ID { get }
 
     /// The topic.id for the topic this task relates to
     var subtopicID: Subtopic.ID { get }
@@ -32,10 +32,7 @@ public protocol Task {
     var creatorID: User.ID? { get }
 
     /// The semester of the exam
-    var examType: ExamTaskType? { get }
-
-    /// The year of the exam
-    var examYear: Int? { get }
+    var exam: Exam.Compact? { get }
 
     /// If the task can be used for testing
     var isTestable: Bool { get }
@@ -66,9 +63,7 @@ public struct GenericTask: Codable, Task, Identifiable {
 
     public var creatorID: User.ID?
 
-    public var examType: ExamTaskType?
-
-    public var examYear: Int?
+    public var exam: Exam.Compact?
 
     public var isTestable: Bool
 
@@ -80,14 +75,13 @@ public struct GenericTask: Codable, Task, Identifiable {
 
     public var editedTaskID: Int?
 
-    public init(id: Int, subtopicID: Subtopic.ID, description: String? = nil, question: String, creatorID: User.ID? = nil, examType: ExamTaskType? = nil, examYear: Int? = nil, isTestable: Bool, createdAt: Date? = nil, updatedAt: Date? = nil, editedTaskID: Int? = nil, deletedAt: Date?) {
+    public init(id: Int, subtopicID: Subtopic.ID, description: String? = nil, question: String, creatorID: User.ID? = nil, exam: Exam.Compact? = nil, isTestable: Bool, createdAt: Date? = nil, updatedAt: Date? = nil, editedTaskID: Int? = nil, deletedAt: Date?) {
         self.id = id
         self.subtopicID = subtopicID
         self.description = description
         self.question = question
         self.creatorID = creatorID
-        self.examType = examType
-        self.examYear = examYear
+        self.exam = exam
         self.isTestable = isTestable
         self.createdAt = createdAt
         self.updatedAt = updatedAt
@@ -109,7 +103,7 @@ public struct CreatorTaskContent: Codable {
     public let topic: Topic
     public let creator: User
     public let isMultipleChoise: Bool
-    public let isNote: Bool = false
+    public var isNote: Bool = false
 
     public var taskTypePath: String {
         if isMultipleChoise {
@@ -137,9 +131,7 @@ public struct TaskPreviewContent {
 
 public struct TaskModifyContent: Codable, Task, Identifiable {
 
-    public var examType: ExamTaskType? { nil }
-
-    public var examYear: Int? { nil }
+    public var exam: Exam.Compact?
 
     public var createdAt: Date? { nil }
 
@@ -172,6 +164,7 @@ public struct TaskModifyContent: Codable, Task, Identifiable {
 
     public init(task: Task, solutions: [TaskSolution]) {
         self.id = task.id
+        self.exam = task.exam
         self.subtopicID = task.subtopicID
         self.description = task.description
         self.question = task.question
