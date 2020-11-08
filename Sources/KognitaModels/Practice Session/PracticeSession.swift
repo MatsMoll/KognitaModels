@@ -1,10 +1,8 @@
 import Foundation
 
-public struct PracticeSession: Codable {
+public struct PracticeSession: Codable, Identifiable {
 
-    public typealias ID = Int
-
-    public let id: ID
+    public let id: Int
     public let numberOfTaskGoal: Int
     public let createdAt: Date
     public let endedAt: Date?

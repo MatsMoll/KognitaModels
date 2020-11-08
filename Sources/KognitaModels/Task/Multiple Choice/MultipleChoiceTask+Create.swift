@@ -4,14 +4,13 @@ extension MultipleChoiceTask {
 
         public struct Data: Codable {
 
-            public init(subtopicId: Topic.ID, description: String?, question: String, solution: String, isMultipleSelect: Bool, examPaperSemester: ExamTaskType?, examPaperYear: Int?, isTestable: Bool, choises: [MultipleChoiceTaskChoice.Create.Data]) {
+            public init(subtopicId: Topic.ID, description: String?, question: String, solution: String, isMultipleSelect: Bool, examID: Exam.ID?, isTestable: Bool, choises: [MultipleChoiceTaskChoice.Create.Data]) {
                 self.subtopicId = subtopicId
                 self.description = description
                 self.question = question
                 self.solution = solution
                 self.isMultipleSelect = isMultipleSelect
-                self.examPaperSemester = examPaperSemester
-                self.examPaperYear = examPaperYear
+                self.examID = examID
                 self.isTestable = isTestable
                 self.choises = choises
             }
@@ -21,8 +20,7 @@ extension MultipleChoiceTask {
             public let question: String
             public let solution: String
             public let isMultipleSelect: Bool
-            public let examPaperSemester: ExamTaskType?
-            public let examPaperYear: Int?
+            public let examID: Exam.ID?
             public let isTestable: Bool
             public let choises: [MultipleChoiceTaskChoice.Create.Data]
         }

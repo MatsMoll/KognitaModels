@@ -1,6 +1,6 @@
 import Foundation
 
-extension PracticeSession {
+extension Sessions {
     public struct TaskResult: Codable {
 
         public var topicID: Topic.ID

@@ -12,20 +12,17 @@ extension TypingTask {
 
             public let solution: String
 
-            public var isTestable: Bool
+            public let isTestable: Bool
 
-            public var examPaperSemester: ExamTaskType?
+            public let examID: Exam.ID?
 
-            public var examPaperYear: Int?
-
-            public init(subtopicId: Subtopic.ID, description: String?, question: String, solution: String, isTestable: Bool, examPaperSemester: ExamTaskType? = nil, examPaperYear: Int? = nil) {
+            public init(subtopicId: Subtopic.ID, description: String?, question: String, solution: String, isTestable: Bool, examID: Exam.ID? = nil) {
                 self.subtopicId = subtopicId
                 self.description = description
                 self.question = question
                 self.solution = solution
                 self.isTestable = isTestable
-                self.examPaperSemester = examPaperSemester
-                self.examPaperYear = examPaperYear
+                self.examID = examID
             }
         }
 

@@ -2,16 +2,15 @@ import Foundation
 
 extension MultipleChoiceTask {
 
-    public struct Details: Task {
+    public struct Details: Task, Codable, Identifiable {
 
-        public init(id: Int, subtopicID: Subtopic.ID, description: String? = nil, question: String, creatorID: User.ID? = nil, examType: ExamTaskType? = nil, examYear: Int? = nil, isTestable: Bool, isDraft: Bool, createdAt: Date? = nil, updatedAt: Date? = nil, deletedAt: Date?, editedTaskID: Int? = nil, isMultipleSelect: Bool, choises: [MultipleChoiceTaskChoice], solutions: [TaskSolution]) {
+        public init(id: Int, subtopicID: Subtopic.ID, description: String?, question: String, creatorID: User.ID?, exam: Exam.Compact?, isTestable: Bool, isDraft: Bool, createdAt: Date?, updatedAt: Date?, deletedAt: Date?, editedTaskID: Int? = nil, isMultipleSelect: Bool, choices: [MultipleChoiceTaskChoice], solutions: [TaskSolution]) {
             self.id = id
             self.subtopicID = subtopicID
             self.description = description
             self.question = question
             self.creatorID = creatorID
-            self.examType = examType
-            self.examYear = examYear
+            self.exam = exam
             self.isTestable = isTestable
             self.isDraft = isDraft
             self.createdAt = createdAt
@@ -19,7 +18,7 @@ extension MultipleChoiceTask {
             self.deletedAt = deletedAt
             self.editedTaskID = editedTaskID
             self.isMultipleSelect = isMultipleSelect
-            self.choises = choises
+            self.choices = choices
             self.solutions = solutions
         }
 
@@ -28,8 +27,7 @@ extension MultipleChoiceTask {
         public var description: String?
         public var question: String
         public var creatorID: User.ID?
-        public var examType: ExamTaskType?
-        public var examYear: Int?
+        public var exam: Exam.Compact?
         public var isTestable: Bool
         public var isDraft: Bool
         public var createdAt: Date?
@@ -37,7 +35,7 @@ extension MultipleChoiceTask {
         public var deletedAt: Date?
         public var editedTaskID: Int?
         public let isMultipleSelect: Bool
-        public let choises: [MultipleChoiceTaskChoice]
+        public let choices: [MultipleChoiceTaskChoice]
 
         public let solutions: [TaskSolution]
     }

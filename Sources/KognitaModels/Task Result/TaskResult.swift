@@ -55,7 +55,7 @@ public protocol TaskResultable {
     var isSetManually: Bool { get }
 }
 
-extension PracticeSession.TaskResult: TaskResultable {
+extension Sessions.TaskResult: TaskResultable {
     public var revisitTime: Int { 0 }
     public var resultDescription: String { "" }
 }

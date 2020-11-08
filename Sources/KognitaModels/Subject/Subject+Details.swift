@@ -9,8 +9,9 @@ extension Subject {
         public let isActive: Bool
         public let canPractice: Bool
         public let isModerator: Bool
+        public let exams: [Exam.WithCompletion]
 
-        public init(subject: Subject, topics: [Topic.UserOverview], openTest: SubjectTest.UserOverview?, numberOfTasks: Int, isActive: Bool, canPractice: Bool, isModerator: Bool) {
+        public init(subject: Subject, topics: [Topic.UserOverview], openTest: SubjectTest.UserOverview?, numberOfTasks: Int, isActive: Bool, canPractice: Bool, isModerator: Bool, exams: [Exam.WithCompletion]) {
             self.subject = subject
             self.topics = topics
             self.subjectLevel = Subject.UserLevel(
@@ -23,6 +24,7 @@ extension Subject {
             self.isActive = isActive
             self.canPractice = canPractice
             self.isModerator = isModerator
+            self.exams = exams
         }
     }
 }
