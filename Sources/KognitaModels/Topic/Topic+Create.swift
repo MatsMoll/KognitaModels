@@ -2,6 +2,7 @@ extension Topic {
 
     public enum Create {
 
+        /// The data needed for creating a `Topic`
         public struct Data: Codable {
 
             /// This subject id

@@ -25,7 +25,7 @@ extension MultipleChoiceTask {
         public let choices: [MultipleChoiceTaskChoice.Create.Data]
 
         public let solutions: [TaskSolution.Create.Data]
-        
+
         public init(description: String?, question: String, exam: Exam.Compact?, isTestable: Bool, isMultipleSelect: Bool, choices: [MultipleChoiceTaskChoice.Create.Data], solutions: [TaskSolution.Create.Data]) {
             self.description = description
             self.question = question
@@ -35,7 +35,7 @@ extension MultipleChoiceTask {
             self.choices = choices
             self.solutions = solutions
         }
-        
+
         public init(task: MultipleChoiceTask.Details) {
             self.description = task.description
             self.question = task.question
@@ -50,7 +50,7 @@ extension MultipleChoiceTask {
 
 extension TypingTask {
     public struct Import: Codable {
-        
+
         public var id: Int { 0 }
         public var subtopicID: Subtopic.ID { 0 }
         public let description: String?
@@ -62,16 +62,16 @@ extension TypingTask {
         public var updatedAt: Date? { nil }
         public var deletedAt: Date? { nil }
         public var editedTaskID: Int? { nil }
-        
+
         public let solutions: [TaskSolution.Create.Data]
-        
+
         public init(description: String?, question: String, exam: Exam.Compact?, solutions: [TaskSolution.Create.Data]) {
             self.description = description
             self.question = question
             self.exam = exam
             self.solutions = solutions
         }
-        
+
         public init(task: TypingTask.Details) {
             self.description = task.description
             self.question = task.question
@@ -88,23 +88,23 @@ extension Subtopic {
             self.multipleChoiceTasks = multipleChoiceTasks
             self.typingTasks = typingTasks
         }
-        
+
         public let subtopic: Subtopic.Create.Data
         public let multipleChoiceTasks: [MultipleChoiceTask.Import]
         public let typingTasks: [TypingTask.Import]
     }
-    
+
     public struct Export: Codable {
         public init(subtopic: Subtopic, multipleChoiceTasks: [MultipleChoiceTask.Details], typingTasks: [TypingTask.Details]) {
             self.subtopic = subtopic
             self.multipleChoiceTasks = multipleChoiceTasks
             self.typingTasks = typingTasks
         }
-        
+
         public let subtopic: Subtopic
         public let multipleChoiceTasks: [MultipleChoiceTask.Details]
         public let typingTasks: [TypingTask.Details]
-        
+
         public var importContent: Subtopic.Import {
             Subtopic.Import(
                 subtopic: Subtopic.Create.Data(name: subtopic.name, topicId: 0),
@@ -121,26 +121,26 @@ extension Topic {
             self.topic = topic
             self.subtopics = subtopics
         }
-        
+
         public let topic: Topic.Create.Data
         public let subtopics: [Subtopic.Import]
-        
+
         public var exams: Set<Exam.Compact> {
             subtopics.reduce(into: Set<Exam.Compact>()) { exams, subtopic in
                 exams.formUnion(subtopic.multipleChoiceTasks.compactMap(\.exam) + subtopic.typingTasks.compactMap(\.exam))
             }
         }
     }
-    
+
     public struct Export: Codable {
         public init(topic: Topic, subtopics: [Subtopic.Export]) {
             self.topic = topic
             self.subtopics = subtopics
         }
-        
+
         public let topic: Topic
         public let subtopics: [Subtopic.Export]
-        
+
         public var importContent: Topic.Import {
             Topic.Import(
                 topic: Topic.Create.Data(
@@ -160,24 +160,24 @@ extension Subject {
             self.subject = subject
             self.topics = topics
         }
-        
+
         public let subject: Subject.Create.Data
         public let topics: [Topic.Import]
-        
+
         public var exams: Set<Exam.Compact> {
             topics.reduce(into: Set<Exam.Compact>()) { $0.formUnion($1.exams) }
         }
     }
-    
+
     public struct Export: Codable {
         public init(subject: Subject, topics: [Topic.Export]) {
             self.subject = subject
             self.topics = topics
         }
-        
+
         public let subject: Subject
         public let topics: [Topic.Export]
-        
+
         public var importContent: Subject.Import {
             Subject.Import(
                 subject: Subject.Create.Data(

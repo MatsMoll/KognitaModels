@@ -7,10 +7,13 @@
 
 import Foundation
 
+/// Representatino of a result on a `Task`
 public struct TaskResult: Codable, Identifiable {
 
+    /// The id of the result
     public var id: Int
 
+    /// When it was created
     public var createdAt: Date
 
     /// The date this task should be revisited
@@ -20,10 +23,13 @@ public struct TaskResult: Codable, Identifiable {
     /// Is optional since the user may delete the user, but this info is still relevant for the service
     public var userID: User.ID?
 
+    /// The id of the `Task`
     public var taskID: Task.ID
 
+    /// The score achived
     public var resultScore: Double
 
+    /// The time used on the task if recored
     public var timeUsed: TimeInterval?
 
     /// Either a `TestSession`.`ID` or `PracticeSession`.`ID`
@@ -41,9 +47,15 @@ public struct TaskResult: Codable, Identifiable {
     }
 }
 
+/// A recummended structure for a task result
 public protocol TaskResultable {
+    /// The topic ID
     var topicID: Topic.ID { get }
+
+    /// Teh topic name
     var topicName: String { get }
+
+    /// The index of the task in a session
     var taskIndex: Int { get }
     var question: String { get }
     var revisitTime: Int { get }

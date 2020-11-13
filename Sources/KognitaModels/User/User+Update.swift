@@ -4,6 +4,7 @@ extension User {
 
     public enum Update {
 
+        /// The data needed to update a `User`
         public struct Data: Codable {
 
             /// User's full name.

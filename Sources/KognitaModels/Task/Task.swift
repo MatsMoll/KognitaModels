@@ -13,10 +13,12 @@ public enum ExamTaskType: String, Codable {
     }
 }
 
+/// A protocol defining the information needed in order to be a task
 public protocol Task {
 
     typealias ID = Int
 
+    /// The id of the task
     var id: ID { get }
 
     /// The topic.id for the topic this task relates to
