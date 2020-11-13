@@ -13,7 +13,7 @@ jobs:
     - name: Run unit tests
       run: swift test --enable-test-discovery
         
-  release:
+  release-docs:
     needs: bionic-tests
     runs-on: ubuntu-latest
     steps:
@@ -37,10 +37,16 @@ jobs:
           path: "Documentation"
         env:
           GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
-#      - name: Release new version
-#        uses: MatsMoll/action-finch@master
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#          GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
-#          GITHUB_SHA: ${{ secrets.GITHUB_SHA }}
-#          FINCH_CONFIG: CI/finch-config.yml
+          
+  release-version:
+    needs: release-docs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1.2.0
+      - name: Release new version
+        uses: MatsMoll/action-finch@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
+          GITHUB_SHA: ${{ secrets.GITHUB_SHA }}
+          FINCH_CONFIG: CI/finch-config.yml
