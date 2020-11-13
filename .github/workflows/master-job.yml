@@ -24,13 +24,7 @@ jobs:
           inputs: "Sources"
           output: "dcov.json"
       - name: Check Documentation Percent
-        run: |
-          if [$(cat dcov.json | jq ".data.totals.percent") -gt 10]
-          then
-            exit 0
-          else
-            exit 1
-          fi
+        run: bash CI/check-percentage.sh dcov.json 10
       - name: Generate Documentation
         uses: SwiftDocOrg/swift-doc@master
         with:
@@ -43,10 +37,10 @@ jobs:
           path: "Documentation"
         env:
           GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
-      - name: Release new version
-        uses: MatsMoll/action-finch@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
-          GITHUB_SHA: ${{ secrets.GITHUB_SHA }}
-          FINCH_CONFIG: CI/finch-config.yml
+#      - name: Release new version
+#        uses: MatsMoll/action-finch@master
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#          GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
+#          GITHUB_SHA: ${{ secrets.GITHUB_SHA }}
+#          FINCH_CONFIG: CI/finch-config.yml
