@@ -33,7 +33,10 @@ public struct User: Codable, Identifiable {
 }
 
 extension User {
+
     public enum Login {
+
+        /// A user login token to identify a user
         public struct Token: Codable, Identifiable {
 
             public var id: Int
@@ -60,11 +63,13 @@ extension User {
 
 extension User {
     public enum ResetPassword {
+        /// A token needed to reset a password
         public struct Token: Codable {
             public init(token: String) {
                 self.token = token
             }
 
+            /// The token value
             public let token: String
         }
     }
@@ -72,19 +77,29 @@ extension User {
 
 extension User {
     public enum VerifyEmail {
+        /// The content used to render a verify email
         public struct EmailContent: Codable {
+
             public init(token: String, userID: User.ID, email: String) {
                 self.token = token
                 self.userID = userID
                 self.email = email
             }
 
+            /// The verify token
             public let token: String
+
+            /// The user id of the user beeing verified
             public let userID: User.ID
+
+            /// The users email
             public let email: String
         }
 
+        /// The token of a verify email
         public struct Token: Codable {
+
+            /// The token value
             public let token: String
 
             public init(token: String) {

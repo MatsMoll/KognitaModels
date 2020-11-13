@@ -13,7 +13,7 @@ extension Exam {
             public let subjectID: Subject.ID
             public let type: ExamType
             public let year: Int
-            
+
             public init(subjectID: Subject.ID, type: ExamType, year: Int) {
                 self.subjectID = subjectID
                 self.type = type

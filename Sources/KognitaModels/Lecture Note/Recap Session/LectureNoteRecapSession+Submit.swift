@@ -8,7 +8,7 @@
 import Foundation
 
 extension LectureNote.RecapSession {
-    
+
     public struct Submit: Codable {
         public init(timeUsed: TimeInterval?, knowledge: Double, answer: String) {
             self.timeUsed = timeUsed

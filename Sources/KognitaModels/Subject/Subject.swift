@@ -1,8 +1,17 @@
+/// Representing a Subject like "Introduction to AI"
 public struct Subject: Codable, Identifiable {
-
+    
+    /// The id of the subject
     public let id: Int
+    
+    /// The name of the subject
     public let name: String
+    
+    /// The description of the subject
     public let description: String
+    
+    /// The category of the subject
+    /// Eg. Technology, Design etc.
     public let category: String
 
     public init(id: Subject.ID, name: String, description: String, category: String) {
@@ -14,6 +23,8 @@ public struct Subject: Codable, Identifiable {
 }
 
 extension Subject {
+    
+    /// The data representating the compendum
     public struct Compendium: Codable {
 
         public init(subjectID: Subject.ID, subjectName: String, topics: [Subject.Compendium.TopicData]) {
@@ -21,18 +32,23 @@ extension Subject {
             self.subjectName = subjectName
             self.topics = topics
         }
-
+        
+        /// Representation of the question data
         public struct QuestionData: Codable {
 
             public init(question: String, solution: String) {
                 self.question = question
                 self.solution = solution
             }
-
+            
+            /// The question
             public let question: String
+            
+            /// The solution for the question
             public let solution: String
         }
-
+        
+        /// The subtopic data
         public struct SubtopicData: Codable {
 
             public init(subjectID: Subject.ID, subtopicID: Subtopic.ID, name: String, questions: [Subject.Compendium.QuestionData]) {
@@ -41,13 +57,21 @@ extension Subject {
                 self.name = name
                 self.questions = questions
             }
-
+            
+            /// Teh subject id
             public let subjectID: Subject.ID
+            
+            /// The subtopic id
             public let subtopicID: Subtopic.ID
+            
+            /// The name of the subtopic
             public let name: String
+            
+            /// The question data assosiated with the subtopic
             public let questions: [QuestionData]
         }
-
+        
+        /// The topic data
         public struct TopicData: Codable {
 
             public init(name: String, chapter: Int, subtopics: [Subject.Compendium.SubtopicData]) {
@@ -55,14 +79,24 @@ extension Subject {
                 self.chapter = chapter
                 self.subtopics = subtopics
             }
-
+            
+            /// The name of the topic
             public let name: String
+            
+            /// The chapter of the topic
             public let chapter: Int
+            
+            /// The subtopic data assosiated with the topic
             public let subtopics: [SubtopicData]
         }
-
+        
+        /// The subject id
         public let subjectID: Subject.ID
+        
+        /// The subject name
         public let subjectName: String
+        
+        /// The topic data assosiated with the `Subject`
         public let topics: [TopicData]
     }
 }

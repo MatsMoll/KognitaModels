@@ -21,7 +21,6 @@ extension LectureNote.RecapSession {
             self.prevTaskIndex = prevTaskIndex
         }
 
-
         public let task: GenericTask
         public let numberOfTasksGoal: Int
         public let progress: Double

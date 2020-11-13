@@ -1,5 +1,6 @@
 import Foundation
 
+/// A representatino of a multiple choice task type
 public struct MultipleChoiceTask: Task, Codable {
 
     public init(id: Int, subtopicID: Subtopic.ID, description: String? = nil, question: String, creatorID: User.ID? = nil, exam: Exam.Compact? = nil, isTestable: Bool, createdAt: Date? = nil, updatedAt: Date? = nil, deletedAt: Date?, editedTaskID: Int? = nil, isMultipleSelect: Bool, choises: [MultipleChoiceTaskChoice]) {
@@ -36,24 +37,49 @@ public struct MultipleChoiceTask: Task, Codable {
         )
     }
 
+    /// Check the `Task` definition
     public var id: Int
+
+    /// Check the `Task` definition
     public var subtopicID: Subtopic.ID
+
+    /// Check the `Task` definition
     public var description: String?
+
+    /// Check the `Task` definition
     public var question: String
+
+    /// Check the `Task` definition
     public var creatorID: User.ID?
+
+    /// Check the `Task` definition
     public var exam: Exam.Compact?
+
+    /// Check the `Task` definition
     public var isTestable: Bool
-    public var isDraft: Bool = false
+
+    /// Check the `Task` definition
     public var createdAt: Date?
+
+    /// Check the `Task` definition
     public var updatedAt: Date?
+
+    /// Check the `Task` definition
     public var deletedAt: Date?
+
+    /// Check the `Task` definition
     public var editedTaskID: Int?
+
+    /// If the user can select more the one choice
     public let isMultipleSelect: Bool
+
+    /// The different choices
     public let choises: [MultipleChoiceTaskChoice]
 }
 
 extension MultipleChoiceTask {
-
+    
+    /// The content that is needed to edit a task in a GUI
     public struct ModifyContent {
         public let task: TaskModifyContent?
         public let subject: Subject
