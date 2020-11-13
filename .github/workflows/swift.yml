@@ -1,31 +1,17 @@
-name: Swift
+name: DevelopmentTestsAction
 
 on:
   pull_request:
     branches: 
-      - master
       - develop
   push:
     branches: 
-      - master
       - develop
-      - rc/*
-      - 1.*
 
 jobs:
-  bionic-job:
+  bionic-tests:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1.2.0
-    - name: GitHub Action for SwiftLint
-      uses: norio-nomura/action-swiftlint@3.1.0
     - name: Run unit tests
       run: swift test --enable-test-discovery
-    - name: Release new version
-      uses: MatsMoll/action-finch@master
-      if: github.ref == 'refs/heads/master'
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
-        GITHUB_SHA: ${{ secrets.GITHUB_SHA }}
-        FINCH_CONFIG: CI/finch-config.yml
