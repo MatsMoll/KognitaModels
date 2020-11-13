@@ -1,0 +1,46 @@
+name: MasterAction
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  bionic-tests:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1.2.0
+    - name: Run unit tests
+      run: swift test --enable-test-discovery
+
+  release-version:
+    needs: bionic-tests
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1.2.0
+    - name: Release new version
+      uses: MatsMoll/action-finch@master
+      if: github.ref == 'refs/heads/master'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
+        GITHUB_SHA: ${{ secrets.GITHUB_SHA }}
+        FINCH_CONFIG: CI/finch-config.yml
+        
+  release-docs:
+    needs: bionic-tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1.2.0
+      - name: Generate Documentation
+        uses: SwiftDocOrg/swift-doc@master
+        with:
+          inputs: "Sources"
+          module-name: KognitaModels
+          output: "Documentation"
+      - name: Upload Documentation to Wiki
+        uses: SwiftDocOrg/github-wiki-publish-action@v1
+        with:
+          path: "Documentation"
+        env:
+          GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
