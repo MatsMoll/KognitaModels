@@ -13,7 +13,7 @@ jobs:
     - name: Run unit tests
       run: swift test --enable-test-discovery
 
-  release:
+  release-version:
     needs: bionic-tests
     runs-on: ubuntu-latest
     steps:
@@ -26,3 +26,21 @@ jobs:
         GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
         GITHUB_SHA: ${{ secrets.GITHUB_SHA }}
         FINCH_CONFIG: CI/finch-config.yml
+        
+  release-docs:
+    needs: bionic-tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1.2.0
+      - name: Generate Documentation
+        uses: SwiftDocOrg/swift-doc@master
+        with:
+          inputs: "Sources"
+          module-name: KognitaModels
+          output: "Documentation"
+      - name: Upload Documentation to Wiki
+        uses: SwiftDocOrg/github-wiki-publish-action@v1
+        with:
+          path: "Documentation"
+        env:
+          GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
