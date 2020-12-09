@@ -1,7 +1,8 @@
 import Foundation
 
 extension User {
-
+    
+    /// Data required to create a user.
     public enum Create {
         /// Data required to create a user.
         public struct Data: Codable {

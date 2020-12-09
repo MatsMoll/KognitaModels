@@ -8,22 +8,52 @@
 import Foundation
 
 extension MultipleChoiceTask {
+    
+    /// The data needed to import a multiple choice task
     public struct Import: Codable, Task {
 
+        /// The id of the task
         public var id: Int { 0 }
+        
+        /// The topic.id for the topic this task relates to
         public var subtopicID: Subtopic.ID { 0 }
+        
+        /// Some markdown that contains extra information about the task if needed
         public let description: String?
+        
+        /// The question needed to answer the task
         public let question: String
+        
+        /// The id of the user who created the task
         public var creatorID: User.ID? { nil }
+        
+        /// The semester of the exam
         public let exam: Exam.Compact?
+        
+        /// If the task can be used for testing
         public let isTestable: Bool
+        
+        /// The date the task was created at
         public var createdAt: Date? { nil }
+        
+        /// The date the task was updated at
+        /// - Note: Usually a task will be marked as isOutdated and create a new `Task` when updated
         public var updatedAt: Date? { nil }
+        
+        /// The date the task was deleted
         public var deletedAt: Date? { nil }
+        
+        /// The id of the new edited task if there exists one
         public var editedTaskID: Int? { nil }
+        
+        
+        /// If the it is possible to select multiple chocies
         public let isMultipleSelect: Bool
+        
+        /// The differnet choices in to select
         public let choices: [MultipleChoiceTaskChoice.Create.Data]
-
+        
+        /// The solutions assosiated with the task
         public let solutions: [TaskSolution.Create.Data]
 
         public init(description: String?, question: String, exam: Exam.Compact?, isTestable: Bool, isMultipleSelect: Bool, choices: [MultipleChoiceTaskChoice.Create.Data], solutions: [TaskSolution.Create.Data]) {
@@ -49,20 +79,44 @@ extension MultipleChoiceTask {
 }
 
 extension TypingTask {
+    /// The data needed to import a typing task
     public struct Import: Codable {
 
+        /// The id of the task
         public var id: Int { 0 }
+        
+        /// The topic.id for the topic this task relates to
         public var subtopicID: Subtopic.ID { 0 }
+        
+        /// Some markdown that contains extra information about the task if needed
         public let description: String?
+        
+        /// The question needed to answer the task
         public let question: String
+        
+        /// The id of the user who created the task
         public var creatorID: User.ID? { nil }
+        
+        /// The semester of the exam
         public let exam: Exam.Compact?
+        
+        /// If the task can be used for testing
         public var isTestable: Bool { false }
+        
+        /// The date the task was created at
         public var createdAt: Date? { nil }
+        
+        /// The date the task was updated at
+        /// - Note: Usually a task will be marked as isOutdated and create a new `Task` when updated
         public var updatedAt: Date? { nil }
+        
+        /// The date the task was deleted
         public var deletedAt: Date? { nil }
+        
+        /// The id of the new edited task if there exists one
         public var editedTaskID: Int? { nil }
 
+        /// The solutions assosiated with the task
         public let solutions: [TaskSolution.Create.Data]
 
         public init(description: String?, question: String, exam: Exam.Compact?, solutions: [TaskSolution.Create.Data]) {

@@ -2,6 +2,7 @@ import Foundation
 
 extension User {
 
+    /// Data required to Update a user.
     public enum Update {
 
         /// The data needed to update a `User`
