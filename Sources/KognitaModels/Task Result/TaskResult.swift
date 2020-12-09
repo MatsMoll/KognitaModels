@@ -57,7 +57,11 @@ public protocol TaskResultable {
 
     /// The index of the task in a session
     var taskIndex: Int { get }
+    
+    /// The question to answer
     var question: String { get }
+    
+    /// The number of days before revisiting the task
     var revisitTime: Int { get }
     var resultDescription: String { get }
     var resultScore: Double { get }

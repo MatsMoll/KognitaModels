@@ -1,5 +1,6 @@
 extension Topic {
 
+    /// Data required to create a topic
     public enum Create {
 
         /// The data needed for creating a `Topic`
@@ -21,6 +22,7 @@ extension Topic {
             }
         }
 
+        /// Data returned when creating
         public typealias Response = Topic
     }
 }

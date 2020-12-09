@@ -53,28 +53,41 @@ public protocol Task {
     var editedTaskID: Task.ID? { get }
 }
 
+/// A generic representation of a task
 public struct GenericTask: Codable, Task, Identifiable {
 
+    /// The id of the task
     public var id: Int
 
+    /// The topic.id for the topic this task relates to
     public var subtopicID: Subtopic.ID
 
+    /// Some markdown that contains extra information about the task if needed
     public var description: String?
 
+    /// The question needed to answer the task
     public var question: String
 
+    /// The id of the user who created the task
     public var creatorID: User.ID?
-
+    
+    /// The semester of the exam
     public var exam: Exam.Compact?
 
+    /// If the task can be used for testing
     public var isTestable: Bool
 
+    /// The date the task was created at
     public var createdAt: Date?
 
+    /// The date the task was updated at
+    /// - Note: Usually a task will be marked as isOutdated and create a new `Task` when updated
     public var updatedAt: Date?
 
+    /// The date the task was deleted
     public var deletedAt: Date?
 
+    /// The id of the new edited task if there exists one
     public var editedTaskID: Int?
 
     public init(id: Int, subtopicID: Subtopic.ID, description: String? = nil, question: String, creatorID: User.ID? = nil, exam: Exam.Compact? = nil, isTestable: Bool, createdAt: Date? = nil, updatedAt: Date? = nil, editedTaskID: Int? = nil, deletedAt: Date?) {
@@ -92,6 +105,7 @@ public struct GenericTask: Codable, Task, Identifiable {
     }
 }
 
+/// A representatino of a task when creating tasks
 public struct CreatorTaskContent: Codable {
 
     public init(task: GenericTask, topic: Topic, creator: User, isMultipleChoise: Bool) {
@@ -100,11 +114,20 @@ public struct CreatorTaskContent: Codable {
         self.creator = creator
         self.isMultipleChoise = isMultipleChoise
     }
-
+    
+    /// The task info
     public let task: GenericTask
+    
+    /// The topic the task is assosiated with
     public let topic: Topic
+    
+    /// The creator of the task
     public let creator: User
+    
+    /// If it is a multipel choice task
     public let isMultipleChoise: Bool
+    
+    /// If it is a note
     public var isNote: Bool = false
 
     public var taskTypePath: String {
