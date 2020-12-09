@@ -24,7 +24,7 @@ jobs:
           inputs: "Sources"
           output: "dcov.json"
       - name: Check Documentation Percent
-        run: sudo bash CI/check-percentage.sh dcov.json 10
+        run: sudo bash CI/check-percentage.sh dcov.json 40
       - name: Generate Documentation
         uses: SwiftDocOrg/swift-doc@master
         with:
