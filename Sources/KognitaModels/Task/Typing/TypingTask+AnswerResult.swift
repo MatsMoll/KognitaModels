@@ -16,5 +16,11 @@ extension TypingTask {
         
         /// The submitted score
         let score: Double
+        
+        /// The id of the task
+        let taskID: Task.ID
+        
+        /// If the score was set manually by the user or if it was an estimate
+        let isSetManually: Bool
     }
 }
