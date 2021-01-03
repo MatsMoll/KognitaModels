@@ -23,7 +23,6 @@ extension SubjectTest {
 
 extension SubjectTest {
 
-    @available(OSX 10.15.0, *)
     public struct MultipleChoiseTaskContent: Codable {
 
         public struct Choise: Codable {

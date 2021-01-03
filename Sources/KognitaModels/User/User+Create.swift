@@ -7,11 +7,12 @@ extension User {
         /// Data required to create a user.
         public struct Data: Codable {
 
-            public init(username: String, email: String, password: String, verifyPassword: String, acceptedTerms: User.Create.Data.TermsOfConditionState) {
+            public init(username: String, email: String, password: String, verifyPassword: String, pictureUrl: String?, acceptedTerms: User.Create.Data.TermsOfConditionState) {
                 self.username = username
                 self.email = email
                 self.password = password
                 self.verifyPassword = verifyPassword
+                self.pictureUrl = pictureUrl
                 self.acceptedTerms = acceptedTerms
             }
 
@@ -50,6 +51,9 @@ extension User {
             /// User's password repeated to ensure they typed it correctly.
             public let verifyPassword: String
 
+            /// A url to a picture if wanted
+            public let pictureUrl: String?
+            
             /// If the terms is accepted
             public let acceptedTerms: TermsOfConditionState
 

@@ -4,11 +4,15 @@ extension Subject {
 
         /// The data needed to create a `Subject`
         public struct Data: Codable {
-            public init(name: String, description: String, category: String) {
+            public init(code: String, name: String, description: String, category: String) {
+                self.code = code
                 self.name = name
                 self.description = description
                 self.category = category
             }
+            
+            /// A code that identifies the subject
+            public let code: String
 
             /// The name of the subject
             public let name: String

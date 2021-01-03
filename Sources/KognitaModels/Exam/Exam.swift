@@ -108,7 +108,7 @@ extension Exam {
 
         public let year: Int
 
-        public var description: String { "År \(year) \(type == .original ? "orginal" : "konte")" }
+        public var description: String { "År \(year)\(type == .original ? "" : " konte")" }
 
         public let createdAt: Date
 
