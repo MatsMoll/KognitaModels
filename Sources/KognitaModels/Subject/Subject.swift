@@ -4,6 +4,9 @@ public struct Subject: Codable, Identifiable {
     /// The id of the subject
     public let id: Int
     
+    /// A code identifying the subject
+    public let code: String
+    
     /// The name of the subject
     public let name: String
     
@@ -14,8 +17,9 @@ public struct Subject: Codable, Identifiable {
     /// Eg. Technology, Design etc.
     public let category: String
 
-    public init(id: Subject.ID, name: String, description: String, category: String) {
+    public init(id: Subject.ID, code: String, name: String, description: String, category: String) {
         self.id = id
+        self.code = code
         self.name = name
         self.description = description
         self.category = category

@@ -235,6 +235,7 @@ extension Subject {
         public var importContent: Subject.Import {
             Subject.Import(
                 subject: Subject.Create.Data(
+                    code: subject.code,
                     name: subject.name,
                     description: subject.description,
                     category: subject.category

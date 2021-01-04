@@ -14,6 +14,9 @@ extension Subject {
         /// The id assosiated with the subject
         public let id: Subject.ID
         
+        /// The code identify the subject
+        public let code: String
+        
         /// The name of the subject
         public let name: String
         
@@ -26,8 +29,9 @@ extension Subject {
         /// If the subject is marked as active for the user
         public let isActive: Bool
 
-        public init(id: Subject.ID, name: String, description: String, category: String, isActive: Bool) {
+        public init(id: Subject.ID, code: String, name: String, description: String, category: String, isActive: Bool) {
             self.id = id
+            self.code = code
             self.name = name
             self.description = description
             self.category = category
@@ -40,8 +44,9 @@ extension Subject {
     /// An overview over the subject
     public struct Overview: Codable {
 
-        public init(id: Int, name: String, description: String, category: String, topics: [Topic]) {
+        public init(id: Int, code: String, name: String, description: String, category: String, topics: [Topic]) {
             self.id = id
+            self.code = code
             self.name = name
             self.description = description
             self.category = category
@@ -50,6 +55,9 @@ extension Subject {
         
         /// The id of the subject
         public let id: Int
+        
+        /// A code identifying a subject
+        public let code: String
         
         /// The name of the subject
         public let name: String
