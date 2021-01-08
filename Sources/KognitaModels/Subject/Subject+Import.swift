@@ -55,8 +55,11 @@ extension MultipleChoiceTask {
         
         /// The solutions assosiated with the task
         public let solutions: [TaskSolution.Create.Data]
+        
+        /// The source if any
+        public let sources: [Resource]?
 
-        public init(description: String?, question: String, exam: Exam.Compact?, isTestable: Bool, isMultipleSelect: Bool, choices: [MultipleChoiceTaskChoice.Create.Data], solutions: [TaskSolution.Create.Data]) {
+        public init(description: String?, question: String, exam: Exam.Compact?, isTestable: Bool, isMultipleSelect: Bool, choices: [MultipleChoiceTaskChoice.Create.Data], solutions: [TaskSolution.Create.Data], sources: [Resource]?) {
             self.description = description
             self.question = question
             self.exam = exam
@@ -64,6 +67,7 @@ extension MultipleChoiceTask {
             self.isMultipleSelect = isMultipleSelect
             self.choices = choices
             self.solutions = solutions
+            self.sources = sources
         }
 
         public init(task: MultipleChoiceTask.Details) {
@@ -74,6 +78,7 @@ extension MultipleChoiceTask {
             self.choices = task.choices.map { MultipleChoiceTaskChoice.Create.Data(choice: $0.choice, isCorrect: $0.isCorrect) }
             self.solutions = task.solutions.map { TaskSolution.Create.Data(solution: $0.solution, presentUser: true, taskID: 0) }
             self.isMultipleSelect = task.isMultipleSelect
+            self.sources = nil
         }
     }
 }
@@ -118,12 +123,16 @@ extension TypingTask {
 
         /// The solutions assosiated with the task
         public let solutions: [TaskSolution.Create.Data]
+        
+        /// The source if any
+        public let sources: [Resource]?
 
-        public init(description: String?, question: String, exam: Exam.Compact?, solutions: [TaskSolution.Create.Data]) {
+        public init(description: String?, question: String, exam: Exam.Compact?, solutions: [TaskSolution.Create.Data], sources: [Resource]?) {
             self.description = description
             self.question = question
             self.exam = exam
             self.solutions = solutions
+            self.sources = sources
         }
 
         public init(task: TypingTask.Details) {
@@ -131,6 +140,7 @@ extension TypingTask {
             self.question = task.question
             self.exam = task.exam
             self.solutions = task.solutions.map { TaskSolution.Create.Data(solution: $0.solution, presentUser: true, taskID: 0) }
+            self.sources = nil
         }
     }
 }

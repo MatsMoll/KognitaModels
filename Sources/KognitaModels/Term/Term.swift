@@ -72,9 +72,13 @@ extension Term {
         /// The meaning of the term
         public let meaning: String
         
-        public init(term: String, meaning: String) {
+        /// The source if any
+        public let sources: [Resource]?
+        
+        public init(term: String, meaning: String, sources: [Resource]?) {
             self.term = term
             self.meaning = meaning
+            self.sources = sources
         }
     }
 }

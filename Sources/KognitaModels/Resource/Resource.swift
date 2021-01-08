@@ -7,15 +7,7 @@
 
 import Foundation
 
-public enum Resource: Equatable, Codable {
-    public static func == (lhs: Resource, rhs: Resource) -> Bool {
-        switch (lhs, rhs) {
-        case (.book(let left), .book(let right)):      return left == right
-        case (.video(let left), .video(let right)):     return left == right
-        case (.article(let left), .article(let right)):   return left == right
-        default: return false
-        }
-    }
+public enum Resource {
 
     public typealias ID = Int
 
@@ -26,7 +18,20 @@ public enum Resource: Equatable, Codable {
     enum Errors: Error {
         case unknownType
     }
-    
+}
+
+extension Resource: Equatable {
+    public static func == (lhs: Resource, rhs: Resource) -> Bool {
+        switch (lhs, rhs) {
+        case (.book(let left), .book(let right)):           return left == right
+        case (.video(let left), .video(let right)):         return left == right
+        case (.article(let left), .article(let right)):     return left == right
+        default: return false
+        }
+    }
+}
+
+extension Resource: Codable {
     enum CodingKeys: String, CodingKey {
         case type
     }
