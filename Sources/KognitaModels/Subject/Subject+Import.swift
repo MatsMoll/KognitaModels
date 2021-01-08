@@ -137,15 +137,17 @@ extension TypingTask {
 
 extension Subtopic {
     public struct Import: Codable {
-        public init(subtopic: Subtopic.Create.Data, multipleChoiceTasks: [MultipleChoiceTask.Import], typingTasks: [TypingTask.Import]) {
+        public init(subtopic: Subtopic.Create.Data, multipleChoiceTasks: [MultipleChoiceTask.Import], typingTasks: [TypingTask.Import], terms: [Term.Import] = []) {
             self.subtopic = subtopic
             self.multipleChoiceTasks = multipleChoiceTasks
             self.typingTasks = typingTasks
+            self.terms = terms
         }
 
         public let subtopic: Subtopic.Create.Data
         public let multipleChoiceTasks: [MultipleChoiceTask.Import]
         public let typingTasks: [TypingTask.Import]
+        public var terms: [Term.Import] = []
     }
 
     public struct Export: Codable {
