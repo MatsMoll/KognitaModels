@@ -55,8 +55,11 @@ extension MultipleChoiceTask {
         
         /// The solutions assosiated with the task
         public let solutions: [TaskSolution.Create.Data]
+        
+        /// The source if any
+        public let sources: [Resource.ID]?
 
-        public init(description: String?, question: String, exam: Exam.Compact?, isTestable: Bool, isMultipleSelect: Bool, choices: [MultipleChoiceTaskChoice.Create.Data], solutions: [TaskSolution.Create.Data]) {
+        public init(description: String?, question: String, exam: Exam.Compact?, isTestable: Bool, isMultipleSelect: Bool, choices: [MultipleChoiceTaskChoice.Create.Data], solutions: [TaskSolution.Create.Data], sources: [Resource.ID]?) {
             self.description = description
             self.question = question
             self.exam = exam
@@ -64,6 +67,7 @@ extension MultipleChoiceTask {
             self.isMultipleSelect = isMultipleSelect
             self.choices = choices
             self.solutions = solutions
+            self.sources = sources
         }
 
         public init(task: MultipleChoiceTask.Details) {
@@ -74,6 +78,7 @@ extension MultipleChoiceTask {
             self.choices = task.choices.map { MultipleChoiceTaskChoice.Create.Data(choice: $0.choice, isCorrect: $0.isCorrect) }
             self.solutions = task.solutions.map { TaskSolution.Create.Data(solution: $0.solution, presentUser: true, taskID: 0) }
             self.isMultipleSelect = task.isMultipleSelect
+            self.sources = nil
         }
     }
 }
@@ -118,12 +123,16 @@ extension TypingTask {
 
         /// The solutions assosiated with the task
         public let solutions: [TaskSolution.Create.Data]
+        
+        /// The source if any
+        public let sources: [Resource.ID]?
 
-        public init(description: String?, question: String, exam: Exam.Compact?, solutions: [TaskSolution.Create.Data]) {
+        public init(description: String?, question: String, exam: Exam.Compact?, solutions: [TaskSolution.Create.Data], sources: [Resource.ID]?) {
             self.description = description
             self.question = question
             self.exam = exam
             self.solutions = solutions
+            self.sources = sources
         }
 
         public init(task: TypingTask.Details) {
@@ -131,21 +140,24 @@ extension TypingTask {
             self.question = task.question
             self.exam = task.exam
             self.solutions = task.solutions.map { TaskSolution.Create.Data(solution: $0.solution, presentUser: true, taskID: 0) }
+            self.sources = nil
         }
     }
 }
 
 extension Subtopic {
     public struct Import: Codable {
-        public init(subtopic: Subtopic.Create.Data, multipleChoiceTasks: [MultipleChoiceTask.Import], typingTasks: [TypingTask.Import]) {
+        public init(subtopic: Subtopic.Create.Data, multipleChoiceTasks: [MultipleChoiceTask.Import], typingTasks: [TypingTask.Import], terms: [Term.Import] = []) {
             self.subtopic = subtopic
             self.multipleChoiceTasks = multipleChoiceTasks
             self.typingTasks = typingTasks
+            self.terms = terms
         }
 
         public let subtopic: Subtopic.Create.Data
         public let multipleChoiceTasks: [MultipleChoiceTask.Import]
         public let typingTasks: [TypingTask.Import]
+        public var terms: [Term.Import] = []
     }
 
     public struct Export: Codable {
@@ -210,13 +222,15 @@ extension Topic {
 
 extension Subject {
     public struct Import: Codable {
-        public init(subject: Subject.Create.Data, topics: [Topic.Import]) {
+        public init(subject: Subject.Create.Data, topics: [Topic.Import], resources: [Resource]) {
             self.subject = subject
             self.topics = topics
+            self.resources = resources
         }
 
         public let subject: Subject.Create.Data
         public let topics: [Topic.Import]
+        public let resources: [Resource]
 
         public var exams: Set<Exam.Compact> {
             topics.reduce(into: Set<Exam.Compact>()) { $0.formUnion($1.exams) }
@@ -224,13 +238,15 @@ extension Subject {
     }
 
     public struct Export: Codable {
-        public init(subject: Subject, topics: [Topic.Export]) {
+        public init(subject: Subject, topics: [Topic.Export], resources: [Resource]) {
             self.subject = subject
             self.topics = topics
+            self.resources = resources
         }
 
         public let subject: Subject
         public let topics: [Topic.Export]
+        public let resources: [Resource]
 
         public var importContent: Subject.Import {
             Subject.Import(
@@ -240,7 +256,8 @@ extension Subject {
                     description: subject.description,
                     category: subject.category
                 ),
-                topics: topics.map { $0.importContent }
+                topics: topics.map { $0.importContent },
+                resources: resources
             )
         }
     }

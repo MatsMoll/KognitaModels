@@ -111,3 +111,18 @@ extension TaskSolution {
         public let choises: [MultipleChoiceTaskChoice]
     }
 }
+
+
+extension TaskSolution {
+    
+    public struct Resources: Codable {
+        
+        public init(solutions: [TaskSolution.Response], resources: [Resource]) {
+            self.solutions = solutions
+            self.resources = resources
+        }
+        
+        public let solutions: [TaskSolution.Response]
+        public let resources: [Resource]
+    }
+}
