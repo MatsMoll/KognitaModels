@@ -7,18 +7,29 @@
 
 import Foundation
 
-public struct VideoResource: Equatable, Codable {
-    public init(url: String, title: String, creator: String, duration: Int?) {
+public struct VideoResource: Equatable, Codable, ResourceRepresentable {
+    public init(id: Int, url: String, title: String, creator: String, duration: Int?) {
+        self.id = id
         self.url = url
         self.title = title
         self.creator = creator
         self.duration = duration
     }
     
+    public let id: Int
     public let url: String
     public let title: String
     public let creator: String
     public let duration: Int?
+    
+    public var createContent: VideoResource.Create.Data {
+        VideoResource.Create.Data(
+            title: title,
+            url: url,
+            creator: creator,
+            duration: duration
+        )
+    }
 }
 
 extension VideoResource {
@@ -38,6 +49,31 @@ extension VideoResource {
                 self.creator = creator
                 self.duration = duration
             }
+        }
+    }
+}
+
+extension VideoResource {
+    public struct Import: Equatable, Codable {
+        public init(url: String, title: String, creator: String, duration: Int?) {
+            self.url = url
+            self.title = title
+            self.creator = creator
+            self.duration = duration
+        }
+        
+        public let url: String
+        public let title: String
+        public let creator: String
+        public let duration: Int?
+        
+        public var createContent: VideoResource.Create.Data {
+            VideoResource.Create.Data(
+                title: title,
+                url: url,
+                creator: creator,
+                duration: duration
+            )
         }
     }
 }
