@@ -55,11 +55,12 @@ extension Subject {
         /// The subtopic data
         public struct SubtopicData: Codable {
 
-            public init(subjectID: Subject.ID, subtopicID: Subtopic.ID, name: String, questions: [Subject.Compendium.QuestionData]) {
+            public init(subjectID: Subject.ID, subtopicID: Subtopic.ID, name: String, questions: [Subject.Compendium.QuestionData], terms: [Term.Compact]) {
                 self.subjectID = subjectID
                 self.subtopicID = subtopicID
                 self.name = name
                 self.questions = questions
+                self.terms = terms
             }
             
             /// Teh subject id
@@ -73,6 +74,8 @@ extension Subject {
             
             /// The question data assosiated with the subtopic
             public let questions: [QuestionData]
+            
+            public let terms: [Term.Compact]
         }
         
         /// The topic data

@@ -39,6 +39,26 @@ public struct Term: Codable, Identifiable {
 }
 
 extension Term {
+    public struct Compact: Codable {
+        
+        /// The id of the term
+        public let id: Term.ID
+        
+        /// The term it self
+        public let term: String
+        
+        /// The meaning of the term
+        public let meaning: String
+        
+        public init(id: Int, term: String, meaning: String) {
+            self.id = id
+            self.term = term
+            self.meaning = meaning
+        }
+    }
+}
+
+extension Term {
     
     /// Structuring the create data
     public enum Create {
