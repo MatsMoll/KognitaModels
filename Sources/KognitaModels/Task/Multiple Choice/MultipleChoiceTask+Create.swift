@@ -4,17 +4,6 @@ extension MultipleChoiceTask {
         
         /// The data needed to create a multiple choice task
         public struct Data: Codable {
-
-            public init(subtopicId: Topic.ID, description: String?, question: String, solution: String, isMultipleSelect: Bool, examID: Exam.ID?, isTestable: Bool, choises: [MultipleChoiceTaskChoice.Create.Data]) {
-                self.subtopicId = subtopicId
-                self.description = description
-                self.question = question
-                self.solution = solution
-                self.isMultipleSelect = isMultipleSelect
-                self.examID = examID
-                self.isTestable = isTestable
-                self.choises = choises
-            }
             
             /// The subtopic id
             public let subtopicId: Topic.ID
@@ -39,6 +28,21 @@ extension MultipleChoiceTask {
             
             /// The different choices in the task
             public let choises: [MultipleChoiceTaskChoice.Create.Data]
+            
+            /// The resources assosiated with the task
+            public let resources: [Resource.Create]
+            
+            public init(subtopicId: Topic.ID, description: String?, question: String, solution: String, isMultipleSelect: Bool, examID: Exam.ID?, isTestable: Bool, choises: [MultipleChoiceTaskChoice.Create.Data], resources: [Resource.Create]) {
+                self.subtopicId = subtopicId
+                self.description = description
+                self.question = question
+                self.solution = solution
+                self.isMultipleSelect = isMultipleSelect
+                self.examID = examID
+                self.isTestable = isTestable
+                self.choises = choises
+                self.resources = resources
+            }
         }
 
         public typealias Response = MultipleChoiceTask

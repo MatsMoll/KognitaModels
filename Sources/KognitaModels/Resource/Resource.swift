@@ -83,13 +83,13 @@ extension Resource: Codable {
 
 
 extension Resource {
-    public enum Import {
+    public enum Create {
 
         public typealias ID = Int
 
-        case book(BookResource.Import)
-        case video(VideoResource.Import)
-        case article(ArticleResource.Import)
+        case book(BookResource.Create.Data)
+        case video(VideoResource.Create.Data)
+        case article(ArticleResource.Create.Data)
         
         enum Errors: Error {
             case unknownType
@@ -97,18 +97,7 @@ extension Resource {
     }
 }
 
-extension Resource.Import: Equatable {
-    public static func == (lhs: Resource.Import, rhs: Resource.Import) -> Bool {
-        switch (lhs, rhs) {
-        case (.book(let left), .book(let right)):           return left == right
-        case (.video(let left), .video(let right)):         return left == right
-        case (.article(let left), .article(let right)):     return left == right
-        default: return false
-        }
-    }
-}
-
-extension Resource.Import: Codable {
+extension Resource.Create: Codable {
     enum CodingKeys: String, CodingKey {
         case type
     }
