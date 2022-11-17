@@ -9,11 +9,11 @@ extension Subtopic {
             public let name: String
             
             /// The id of the topic
-            public var topicId: Topic.ID
+            public var topicID: Topic.ID
 
             public init(name: String, topicId: Topic.ID) {
                 self.name = name
-                self.topicId = topicId
+                self.topicID = topicId
             }
         }
 

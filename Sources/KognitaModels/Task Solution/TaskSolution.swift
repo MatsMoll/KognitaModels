@@ -33,6 +33,19 @@ public struct TaskSolution: Codable, Identifiable {
 }
 
 extension TaskSolution {
+    
+    public struct Import: Codable {
+
+        /// The actuall solution
+        public let solution: String
+
+        public init(solution: String) {
+            self.solution = solution
+        }
+    }
+}
+
+extension TaskSolution {
 
     /// A more GUI friendly representation of a solution
     public struct Response: Codable {

@@ -46,7 +46,6 @@ extension MultipleChoiceTask {
         /// The id of the new edited task if there exists one
         public var editedTaskID: Int? { nil }
         
-        
         /// If the it is possible to select multiple chocies
         public let isMultipleSelect: Bool
         
@@ -54,12 +53,12 @@ extension MultipleChoiceTask {
         public let choices: [MultipleChoiceTaskChoice.Create.Data]
         
         /// The solutions assosiated with the task
-        public let solutions: [TaskSolution.Create.Data]
+        public let solutions: [TaskSolution.Import]
         
         /// The source if any
         public let sources: [Resource.ID]?
 
-        public init(description: String?, question: String, exam: Exam.Compact?, isTestable: Bool, isMultipleSelect: Bool, choices: [MultipleChoiceTaskChoice.Create.Data], solutions: [TaskSolution.Create.Data], sources: [Resource.ID]?) {
+        public init(description: String?, question: String, exam: Exam.Compact?, isTestable: Bool, isMultipleSelect: Bool, choices: [MultipleChoiceTaskChoice.Create.Data], solutions: [TaskSolution.Import], sources: [Resource.ID]?) {
             self.description = description
             self.question = question
             self.exam = exam
@@ -76,7 +75,7 @@ extension MultipleChoiceTask {
             self.exam = task.exam
             self.isTestable = task.isTestable
             self.choices = task.choices.map { MultipleChoiceTaskChoice.Create.Data(choice: $0.choice, isCorrect: $0.isCorrect) }
-            self.solutions = task.solutions.map { TaskSolution.Create.Data(solution: $0.solution, presentUser: true, taskID: 0) }
+            self.solutions = task.solutions.map { TaskSolution.Import(solution: $0.solution) }
             self.isMultipleSelect = task.isMultipleSelect
             self.sources = nil
         }
@@ -122,12 +121,12 @@ extension TypingTask {
         public var editedTaskID: Int? { nil }
 
         /// The solutions assosiated with the task
-        public let solutions: [TaskSolution.Create.Data]
+        public let solutions: [TaskSolution.Import]
         
         /// The source if any
         public let sources: [Resource.ID]?
 
-        public init(description: String?, question: String, exam: Exam.Compact?, solutions: [TaskSolution.Create.Data], sources: [Resource.ID]?) {
+        public init(description: String?, question: String, exam: Exam.Compact?, solutions: [TaskSolution.Import], sources: [Resource.ID]?) {
             self.description = description
             self.question = question
             self.exam = exam
@@ -139,7 +138,7 @@ extension TypingTask {
             self.description = task.description
             self.question = task.question
             self.exam = task.exam
-            self.solutions = task.solutions.map { TaskSolution.Create.Data(solution: $0.solution, presentUser: true, taskID: 0) }
+            self.solutions = task.solutions.map { TaskSolution.Import(solution: $0.solution) }
             self.sources = nil
         }
     }
@@ -151,13 +150,13 @@ extension Subtopic {
             self.subtopic = subtopic
             self.multipleChoiceTasks = multipleChoiceTasks
             self.typingTasks = typingTasks
-            self.terms = terms
+//            self.terms = terms
         }
 
         public let subtopic: Subtopic.Create.Data
         public let multipleChoiceTasks: [MultipleChoiceTask.Import]
         public let typingTasks: [TypingTask.Import]
-        public var terms: [Term.Import] = []
+//        public var terms: [Term.Import] = []
     }
 
     public struct Export: Codable {
